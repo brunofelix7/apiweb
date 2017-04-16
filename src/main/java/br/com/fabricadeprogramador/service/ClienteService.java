@@ -1,10 +1,10 @@
 package br.com.fabricadeprogramador.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.fabricadeprogramador.model.Cliente;
+import br.com.fabricadeprogramador.repository.ClienteRepository;
 
 /**
  * Classe que contém minhas regras de negócio
@@ -13,32 +13,27 @@ import br.com.fabricadeprogramador.model.Cliente;
 @Service
 public class ClienteService {
 	
-	//	Banco de dados (DAO)
-	private Map<Integer, Cliente> clientes = new HashMap<>();;
-	private Integer nextId = 1;
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
-	public Cliente cadastrar(Cliente cliente){
-		cliente.setId(nextId);
-		nextId++;
-		clientes.put(cliente.getId(), cliente);
-		return cliente;
+	public Cliente salvar(Cliente cliente){
+		return clienteRepository.save(cliente);
 	}
 	
 	public Cliente buscarPorId(Integer id){
-		return clientes.get(id);
+		return clienteRepository.findOne(id);
 	}
 	
 	public Collection<Cliente> buscarTodos(){
-		return clientes.values();
+		return clienteRepository.findAll();
 	}
 
 	public void excluir(Cliente cliente){
-		clientes.remove(cliente.getId());
+		clienteRepository.delete(cliente);
 	}
 	
 	public Cliente editar(Cliente cliente){
-		clientes.put(cliente.getId(), cliente);
-		return cliente;
+		return salvar(cliente);
 	}
 	
 }

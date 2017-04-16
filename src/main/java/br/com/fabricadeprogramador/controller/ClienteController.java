@@ -33,7 +33,7 @@ public class ClienteController {
 	 */
 	@RequestMapping(value = "/novo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente){
-		Cliente clientes = clienteService.cadastrar(cliente);	
+		Cliente clientes = clienteService.salvar(cliente);	
 		return new ResponseEntity<>(clientes, HttpStatus.OK); //	Retorna 200
 	}
 	
