@@ -40,5 +40,9 @@ function novoContato(){
 	divLinha.appendChild(br);
 	elementListaContatos.appendChild(divLinha);
 }
+//	Imprimir todos os inputs
+function imprimirDados(){
+	
+}
 test();
 document.write(x);
