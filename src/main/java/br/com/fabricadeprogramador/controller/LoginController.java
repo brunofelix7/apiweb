@@ -28,6 +28,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Login>> buscarTodos(){
 		Collection<Login> users = loginService.buscarTodos();
+		 
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
